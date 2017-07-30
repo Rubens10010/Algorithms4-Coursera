@@ -1,3 +1,4 @@
+import java.util.*;
 public class quickFind{
   private int[] id;
   
@@ -18,6 +19,25 @@ public class quickFind{
   */
   public void union(int p, int q)
   {
-    int pid
+    int pid = id[p];
+    int qid = id[q];
+    for(int i = 0; i < id.length; i++)
+      if (id[i] == pid) id[i] = qid;
+  }
+  
+  public static void main(String[] args){
+    
+    Scanner scan = new Scanner(System.in);
+    int N = scan.nextInt();
+    quickFind uf = new quickFind(N);
+    while(scan.hasNextLine() && scan.hasNext()){
+      int p = scan.nextInt();
+      int q = scan.nextInt();
+      if(!uf.connected(p,q)){
+        uf.union(p,q);
+        System.out.println(p + " " + q);
+      }
+    }
+   
   }
 }
